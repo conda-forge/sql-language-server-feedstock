@@ -23,6 +23,7 @@ requirements:
     - pnpm
     - pnpm-licenses
     - python
+    - setuptools
   run:
     - nodejs
 

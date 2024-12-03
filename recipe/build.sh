@@ -2,10 +2,6 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
-# Run pnpm so that pnpm-licenses can create report
-pnpm install
-pnpm pack
-
 # Create package archive and install globally
 npm pack --ignore-scripts
 npm install -ddd \
@@ -13,7 +9,8 @@ npm install -ddd \
     --build-from-source \
     ${SRC_DIR}/${PKG_NAME}-${PKG_VERSION}.tgz
 
-# Create license report for dependencies
+# Run pnpm so that pnpm-licenses can create report
+pnpm install
 pnpm-licenses generate-disclaimer --prod --output-file=third-party-licenses.txt
 
 # Delete leftover build artifact

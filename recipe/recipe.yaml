@@ -1,0 +1,44 @@
+context:
+  version: 1.7.0
+
+package:
+  name: sql-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/sql-language-server/-/sql-language-server-${{ version }}.tgz
+  sha256: c66e8d94863c52c34cab0865be3bac61f152e8029ba32d95778d984c8e0a49b1
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - make
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+    - python
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - sql-language-server --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: SQL Language Server
+  homepage: https://github.com/joe-re/sql-language-server
+  repository: https://github.com/joe-re/sql-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun
